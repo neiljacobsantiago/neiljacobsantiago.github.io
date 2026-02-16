@@ -63,17 +63,78 @@ document.addEventListener('mousemove', (e) => {
   }
 });
 
+// 4. Apple-Style Lightbox Logic
+function initLightbox() {
+  const photoItems = document.querySelectorAll('.photo-item');
+  if (photoItems.length === 0) return; // Only run if photos exist on the page
+
+  // Create the Lightbox DOM Elements dynamically
+  const lightbox = document.createElement('div');
+  lightbox.id = 'lightbox';
+  lightbox.className = 'lightbox';
+  lightbox.innerHTML = `
+    <div class="lightbox-close">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+    </div>
+    <div class="lightbox-content">
+      <img id="lightbox-img" class="lightbox-img" src="" alt="Enlarged view">
+      <div id="lightbox-caption" class="lightbox-caption-text"></div>
+    </div>
+  `;
+  document.body.appendChild(lightbox);
+
+  const lightboxImg = lightbox.querySelector('#lightbox-img');
+  const lightboxCaption = lightbox.querySelector('#lightbox-caption');
+  const closeBtn = lightbox.querySelector('.lightbox-close');
+
+  // Add click events to all photos
+  photoItems.forEach(item => {
+    item.addEventListener('click', () => {
+      const img = item.querySelector('img');
+      const title = item.querySelector('h4').innerText;
+      
+      lightboxImg.src = img.src;
+      lightboxCaption.innerText = title;
+      lightbox.classList.add('active');
+      document.body.classList.add('lightbox-open'); // Stops background scrolling
+    });
+  });
+
+  // Close Logic
+  const closeLightbox = () => {
+    lightbox.classList.remove('active');
+    document.body.classList.remove('lightbox-open');
+    // Clear image after fade out so it doesn't flash the old image next time
+    setTimeout(() => { if (!lightbox.classList.contains('active')) lightboxImg.src = ''; }, 400);
+  };
+
+  closeBtn.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', (e) => {
+    // Close if they click the dark background outside the image
+    if (e.target === lightbox || e.target === lightbox.querySelector('.lightbox-content')) closeLightbox();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeLightbox(); // Close on Esc key
+  });
+}
+
 // --- Initialize Everything ---
 document.addEventListener('DOMContentLoaded', () => {
+  // 1. Start animations
   type();
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  
+  // 2. Initialize Lightbox
+  initLightbox();
+
+  // 3. Load the modular components
   loadComponents();
 });
 
 // --- Initialize scripts that target the injected Nav/Footer ---
 document.addEventListener('componentsLoaded', () => {
   
-  // Initialize Theme Toggle
+  // Theme Toggle Logic
   const themeBtn = document.getElementById('theme-toggle');
   
   if (themeBtn) {
@@ -94,7 +155,7 @@ document.addEventListener('componentsLoaded', () => {
     });
   }
 
-  // Initialize Mobile Menu Logic
+  // Mobile Menu Logic
   const mobileBtn = document.getElementById('mobile-menu-btn');
   const navLinks = document.getElementById('nav-links');
 
