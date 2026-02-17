@@ -26,7 +26,7 @@ const phrases = ["UI/UX Designer", "Network Administrator", "Multimedia Producer
 let phraseIndex = 0, charIndex = 0, isDeleting = false;
 
 function type() {
-  if (!textElement) return; // safety check
+  if (!textElement) return;
   const currentPhrase = phrases[phraseIndex];
   textElement.textContent = currentPhrase.substring(0, charIndex + (isDeleting ? -1 : 1));
   charIndex += isDeleting ? -1 : 1;
@@ -42,7 +42,7 @@ const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
 }, { threshold: 0.1 });
 
-// 3. Lively 3D Tilt Effect (Desktop Only)
+// 3. Lively 3D Tilt Effect
 document.addEventListener('mousemove', (e) => {
   if (window.matchMedia("(hover: hover)").matches) {
     document.querySelectorAll('.tilt-card').forEach(card => {
@@ -63,12 +63,11 @@ document.addEventListener('mousemove', (e) => {
   }
 });
 
-// 4. Apple-Style Lightbox Logic
+// 4. Lightbox Logic
 function initLightbox() {
   const photoItems = document.querySelectorAll('.photo-item');
-  if (photoItems.length === 0) return; // Only run if photos exist on the page
+  if (photoItems.length === 0) return;
 
-  // Create the Lightbox DOM Elements dynamically
   const lightbox = document.createElement('div');
   lightbox.id = 'lightbox';
   lightbox.className = 'lightbox';
@@ -87,87 +86,122 @@ function initLightbox() {
   const lightboxCaption = lightbox.querySelector('#lightbox-caption');
   const closeBtn = lightbox.querySelector('.lightbox-close');
 
-  // Add click events to all photos
   photoItems.forEach(item => {
     item.addEventListener('click', () => {
-      const img = item.querySelector('img');
-      const title = item.querySelector('h4').innerText;
-      
-      lightboxImg.src = img.src;
-      lightboxCaption.innerText = title;
+      lightboxImg.src = item.querySelector('img').src;
+      lightboxCaption.innerText = item.querySelector('h4').innerText;
       lightbox.classList.add('active');
-      document.body.classList.add('lightbox-open'); // Stops background scrolling
+      document.body.classList.add('lightbox-open');
     });
   });
 
-  // Close Logic
   const closeLightbox = () => {
     lightbox.classList.remove('active');
     document.body.classList.remove('lightbox-open');
-    // Clear image after fade out so it doesn't flash the old image next time
     setTimeout(() => { if (!lightbox.classList.contains('active')) lightboxImg.src = ''; }, 400);
   };
 
   closeBtn.addEventListener('click', closeLightbox);
   lightbox.addEventListener('click', (e) => {
-    // Close if they click the dark background outside the image
     if (e.target === lightbox || e.target === lightbox.querySelector('.lightbox-content')) closeLightbox();
   });
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeLightbox(); // Close on Esc key
+    if (e.key === 'Escape') closeLightbox();
   });
+}
+
+// 5. Morphing Contact Form Logic
+function initContactForm() {
+  const showBtn = document.getElementById('show-contact-form');
+  const cancelBtn = document.getElementById('cancel-contact-form');
+  const formContainer = document.getElementById('contact-form-container');
+  const contactForm = document.getElementById('dynamic-contact-form');
+
+  if (showBtn && formContainer) {
+    showBtn.addEventListener('click', () => {
+      showBtn.style.display = 'none';
+      formContainer.classList.add('active');
+    });
+
+    cancelBtn.addEventListener('click', () => {
+      formContainer.classList.remove('active');
+      setTimeout(() => {
+        showBtn.style.display = 'inline-block';
+      }, 300);
+    });
+
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      const name = document.getElementById('sender-name').value;
+      const subject = document.getElementById('sender-subject').value;
+      const message = document.getElementById('sender-message').value;
+
+      // REPLACE THIS WITH YOUR ACTUAL EMAIL
+      const targetEmail = 'YOUR_EMAIL@gmail.com'; 
+      
+      const mailtoLink = `mailto:${targetEmail}?subject=${encodeURIComponent(subject + ' - ' + name)}&body=${encodeURIComponent(message + '\n\n---\nSent from Portfolio by:\n' + name)}`;
+      
+      window.location.href = mailtoLink;
+      
+      contactForm.reset();
+      cancelBtn.click();
+    });
+  }
 }
 
 // --- Initialize Everything ---
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. Start animations
   type();
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-  
-  // 2. Initialize Lightbox
   initLightbox();
-
-  // 3. Load the modular components
+  initContactForm();
   loadComponents();
 });
 
-// --- Initialize scripts that target the injected Nav/Footer ---
+// --- Injected Component Logic ---
 document.addEventListener('componentsLoaded', () => {
   
-  // Theme Toggle Logic
   const themeBtn = document.getElementById('theme-toggle');
-  
   if (themeBtn) {
     const html = document.documentElement;
-
-    // Check LocalStorage on load
     if (localStorage.getItem('theme') === 'dark') {
       html.setAttribute('data-theme', 'dark');
     }
-
-    // Handle Click
     themeBtn.addEventListener('click', () => {
       const currentTheme = html.getAttribute('data-theme');
       const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-      
       html.setAttribute('data-theme', newTheme);
       localStorage.setItem('theme', newTheme);
     });
   }
 
-  // Mobile Menu Logic
   const mobileBtn = document.getElementById('mobile-menu-btn');
   const navLinks = document.getElementById('nav-links');
-
   if (mobileBtn && navLinks) {
     mobileBtn.addEventListener('click', () => {
       navLinks.classList.toggle('active');
     });
-    
     document.querySelectorAll('.nav-links a').forEach(link => {
       link.addEventListener('click', () => {
         navLinks.classList.remove('active');
       });
     });
+  }
+
+  const timestampEl = document.getElementById('github-timestamp');
+  if (timestampEl) {
+    fetch('https://api.github.com/repos/neiljacobsantiago/neiljacobsantiago.github.io/commits?per_page=1')
+      .then(response => response.json())
+      .then(data => {
+        if (data && data.length > 0) {
+          const commitDate = new Date(data[0].commit.committer.date);
+          const options = { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' };
+          timestampEl.innerText = 'Last updated: ' + commitDate.toLocaleDateString('en-US', options);
+        }
+      })
+      .catch(err => {
+        timestampEl.innerText = 'System online';
+      });
   }
 });

@@ -53,12 +53,24 @@
 
 html { scroll-behavior: smooth; }
 
+/* --- DUAL FONT DESIGN (Apple SF Pro / Inter + JetBrains Accent) --- */
 body {
-  font-family: 'Inter', sans-serif;
+  /* Native Apple Stack fallback to Inter */
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", sans-serif;
   background: var(--bg-color);
   color: var(--text-main);
   overflow-x: hidden;
   transition: background var(--theme-transition), color var(--theme-transition);
+}
+
+/* Headings & UI Elements strictly use the clean SF Pro / Inter */
+h1, h2, h3, h4, h5, h6, .skill-title, .primary-btn, .secondary-btn, .contact-btn, input, textarea, .nav-links a, .nav-resume-btn, .lightbox-caption-text {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", sans-serif !important;
+}
+
+/* Tech Accents keep the Monospace aesthetic */
+.project-tag, .timeline-date, .typing-wrapper {
+  font-family: 'JetBrains Mono', monospace !important;
 }
 
 /* --- Animated Ambient Background Glows --- */
@@ -103,7 +115,13 @@ nav {
 .nav-right { display: flex; align-items: center; gap: 1rem; }
 .nav-logo { display: flex; align-items: center; }
 
-.brand-logo { height: 36px; width: auto; transition: filter var(--theme-transition); }
+/* FIX FOR EXPLODING LOGO */
+.nav-logo img, .brand-logo, a.logo img { 
+  max-height: 36px !important; 
+  width: auto !important; 
+  object-fit: contain !important; 
+  transition: filter var(--theme-transition); 
+}
 [data-theme="dark"] .brand-logo { filter: invert(1); }
 
 nav ul { display: flex; list-style: none; gap: 2rem; align-items: center; }
@@ -218,9 +236,26 @@ h1 {
   font-weight: 800; letter-spacing: -1px;
 }
 
-.typing-wrapper { font-family: 'JetBrains Mono', monospace; color: var(--accent); font-size: clamp(1.2rem, 2vw, 1.8rem); margin-bottom: 1.5rem; }
-.cursor { display: inline-block; width: 3px; height: 1.2em; background: var(--text-main); animation: blink 1s infinite; vertical-align: text-bottom; transition: background var(--theme-transition); }
+/* =========================================
+   RESTORED TYPING EFFECT SIZE & COLOR
+========================================= */
+.typing-wrapper { 
+  color: var(--accent); 
+  font-size: clamp(1.2rem, 2vw, 1.8rem); 
+  margin-bottom: 1.5rem; 
+}
+
+.cursor { 
+  display: inline-block; 
+  width: 3px; height: 1.2em; 
+  background: var(--text-main); 
+  animation: blink 1s infinite; 
+  vertical-align: text-bottom; 
+  transition: background var(--theme-transition); 
+}
+
 @keyframes blink { 50% { opacity: 0; } }
+
 .hero-subtitle { font-size: 1.1rem; max-width: 500px; margin-bottom: 2.5rem; color: var(--text-secondary); }
 
 /* =========================================
@@ -289,7 +324,7 @@ h1 {
 .timeline-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; flex-wrap: wrap; gap: 1rem; }
 .timeline-header h3 { font-size: 1.3rem; margin-bottom: 0.3rem; transition: color var(--theme-transition); }
 .timeline-header h4 { font-size: 1rem; color: var(--text-secondary); font-weight: 500; transition: color var(--theme-transition); }
-.timeline-date { font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 600; color: var(--accent); background: rgba(0,122,255, 0.1); padding: 0.4rem 1rem; border-radius: 50px; white-space: nowrap; }
+.timeline-date { font-size: 0.85rem; font-weight: 600; color: var(--accent); background: rgba(0,122,255, 0.1); padding: 0.4rem 1rem; border-radius: 50px; white-space: nowrap; }
 
 /* Skills Grid */
 .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
@@ -450,3 +485,27 @@ footer { text-align: center; padding: 2rem; color: var(--text-secondary); font-s
 body.lightbox-open {
   overflow: hidden;
 }
+
+
+.hidden-form {
+  display: none; opacity: 0; transition: opacity 0.4s ease;
+  width: 100%; max-width: 500px; margin: 1.5rem auto 0; text-align: left;
+}
+.hidden-form.active { display: block; opacity: 1; animation: slideDown 0.4s ease forwards; }
+
+@keyframes slideDown {
+  from { transform: translateY(-10px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.form-group { margin-bottom: 1rem; }
+.form-group input, .form-group textarea {
+  width: 100%; padding: 1rem; border-radius: 12px; border: 1px solid var(--glass-border);
+  background: rgba(255, 255, 255, 0.4); color: var(--text-main);
+  outline: none; transition: border-color 0.3s ease, background 0.3s ease;
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+}
+[data-theme="dark"] .form-group input, [data-theme="dark"] .form-group textarea { background: rgba(0, 0, 0, 0.3); color: var(--text-main); }
+.form-group input:focus, .form-group textarea:focus { border-color: var(--accent); background: var(--glass-bg); }
+
+.form-actions { display: flex; gap: 1rem; justify-content: flex-end; margin-top: 1rem; }
