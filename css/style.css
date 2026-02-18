@@ -390,19 +390,29 @@ footer { text-align: center; padding: 2rem; color: var(--text-secondary); font-s
   .timeline-item { gap: 1rem; } 
 }
 
+/* css/style.css */
+
 @media (max-width: 768px) { 
   #mobile-menu-btn { display: block !important; } 
   
   /* Fix 2: Float the navigation menu so it doesn't crash into the hero */
   .nav-links { 
     position: absolute; top: 85px; left: 5%; width: 90%; 
-    background: var(--glass-bg); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); 
+    /* CHANGED: Increased opacity from ~0.5 to 0.9 for better readability */
+    background: rgba(255, 255, 255, 0.9); 
+    backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); 
     border: 1px solid var(--glass-border); border-radius: 24px; 
     flex-direction: column; align-items: center; gap: 2rem; padding: 2.5rem 0; 
     transform: translateY(-20px); opacity: 0; pointer-events: none; 
     transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease; 
     z-index: 999; box-shadow: 0 20px 40px rgba(0,0,0,0.2); 
-  } 
+  }
+
+  /* ADDED: Ensure Dark Mode is also opaque */
+  [data-theme="dark"] .nav-links {
+    background: rgba(30, 30, 35, 0.9);
+  }
+  
   .nav-links.active { transform: translateY(0); opacity: 1; pointer-events: all; } 
 
   h1 { font-size: 2.5rem; } 
