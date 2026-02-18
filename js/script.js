@@ -138,7 +138,7 @@ function initContactForm() {
       const message = document.getElementById('sender-message').value;
 
       // REPLACE THIS WITH YOUR ACTUAL EMAIL
-      const targetEmail = 'YOUR_EMAIL@gmail.com'; 
+      const targetEmail = 'neiljacobesantiago@gmail.com'; 
       
       const mailtoLink = `mailto:${targetEmail}?subject=${encodeURIComponent(subject + ' - ' + name)}&body=${encodeURIComponent(message + '\n\n---\nSent from Portfolio by:\n' + name)}`;
       
@@ -150,12 +150,32 @@ function initContactForm() {
   }
 }
 
+// 6. Mobile Auto-Hover for Photography
+function initMobilePhotoHover() {
+  if (window.matchMedia("(max-width: 768px)").matches || 'ontouchstart' in window) {
+    const photoObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) { 
+          entry.target.classList.add('in-view'); 
+        } else { 
+          entry.target.classList.remove('in-view'); 
+        }
+      });
+    }, { rootMargin: "-35% 0px -35% 0px", threshold: 0 });
+
+    document.querySelectorAll('.photo-item').forEach(item => {
+      photoObserver.observe(item);
+    });
+  }
+}
+
 // --- Initialize Everything ---
 document.addEventListener('DOMContentLoaded', () => {
   type();
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
   initLightbox();
   initContactForm();
+  initMobilePhotoHover(); // Added mobile hover initialization
   loadComponents();
 });
 
