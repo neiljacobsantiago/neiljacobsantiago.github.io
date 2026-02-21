@@ -110,12 +110,11 @@ function initLightbox() {
   });
 }
 
-// 5. Morphing Contact Form Logic
+// 5. Morphing Contact Form Logic (UPDATED FOR FORMSUBMIT)
 function initContactForm() {
   const showBtn = document.getElementById('show-contact-form');
   const cancelBtn = document.getElementById('cancel-contact-form');
   const formContainer = document.getElementById('contact-form-container');
-  const contactForm = document.getElementById('dynamic-contact-form');
 
   if (showBtn && formContainer) {
     showBtn.addEventListener('click', () => {
@@ -130,23 +129,8 @@ function initContactForm() {
       }, 300);
     });
 
-    contactForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      
-      const name = document.getElementById('sender-name').value;
-      const subject = document.getElementById('sender-subject').value;
-      const message = document.getElementById('sender-message').value;
-
-      // REPLACE THIS WITH YOUR ACTUAL EMAIL
-      const targetEmail = 'neiljacobesantiago@gmail.com'; 
-      
-      const mailtoLink = `mailto:${targetEmail}?subject=${encodeURIComponent(subject + ' - ' + name)}&body=${encodeURIComponent(message + '\n\n---\nSent from Portfolio by:\n' + name)}`;
-      
-      window.location.href = mailtoLink;
-      
-      contactForm.reset();
-      cancelBtn.click();
-    });
+    // We no longer prevent default here.
+    // The HTML <form action="..."> now handles the actual submission to FormSubmit.
   }
 }
 
