@@ -128,9 +128,6 @@ function initContactForm() {
         showBtn.style.display = 'inline-block';
       }, 300);
     });
-
-    // We no longer prevent default here.
-    // The HTML <form action="..."> now handles the actual submission to FormSubmit.
   }
 }
 
@@ -153,13 +150,28 @@ function initMobilePhotoHover() {
   }
 }
 
+// 7. Secure Social Links Decryptor
+function initSecureSocials() {
+  document.querySelectorAll('.secure-social').forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault(); // Stop the browser from following the empty href="#"
+      const secureData = this.getAttribute('data-secure');
+      if (secureData) {
+        const decodedUrl = atob(secureData); // atob() natively decrypts Base64 in JavaScript
+        window.open(decodedUrl, '_blank'); // Opens the real link in a new tab
+      }
+    });
+  });
+}
+
 // --- Initialize Everything ---
 document.addEventListener('DOMContentLoaded', () => {
   type();
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
   initLightbox();
   initContactForm();
-  initMobilePhotoHover(); // Added mobile hover initialization
+  initMobilePhotoHover(); 
+  initSecureSocials(); // Initialize the link decryptor
   loadComponents();
 });
 
