@@ -65,6 +65,7 @@ document.addEventListener('mousemove', (e) => {
 
 // 4. Lightbox Logic (UPDATED FOR HIGH-RES PREVIEWS)
 // 4. Lightbox Logic (UPDATED FOR HIGH-RES)
+// 4. Lightbox Logic (UPDATED FOR ANCHOR LINKS)
 function initLightbox() {
   const photoItems = document.querySelectorAll('.photo-item');
   if (photoItems.length === 0) return;
@@ -88,11 +89,13 @@ function initLightbox() {
   const closeBtn = lightbox.querySelector('.lightbox-close');
 
   photoItems.forEach(item => {
-    item.addEventListener('click', () => {
+    item.addEventListener('click', (e) => {
+      e.preventDefault(); // <--- THE FIX: Stops the browser from leaving the page normally!
+      
       const imgElement = item.querySelector('img');
       
-      // THE MAGIC TRICK: Pull the massive original file using data-highres
-      const highResSource = imgElement.getAttribute('data-highres');
+      // Look for the high-res link in the new href attribute
+      const highResSource = item.getAttribute('href'); 
       lightboxImg.src = highResSource ? highResSource : imgElement.src;
       
       lightboxCaption.innerText = item.querySelector('h4').innerText;
