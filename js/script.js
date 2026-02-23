@@ -63,7 +63,8 @@ document.addEventListener('mousemove', (e) => {
   }
 });
 
-// 4. Lightbox Logic
+// 4. Lightbox Logic (UPDATED FOR HIGH-RES PREVIEWS)
+// 4. Lightbox Logic (UPDATED FOR HIGH-RES)
 function initLightbox() {
   const photoItems = document.querySelectorAll('.photo-item');
   if (photoItems.length === 0) return;
@@ -88,7 +89,12 @@ function initLightbox() {
 
   photoItems.forEach(item => {
     item.addEventListener('click', () => {
-      lightboxImg.src = item.querySelector('img').src;
+      const imgElement = item.querySelector('img');
+      
+      // THE MAGIC TRICK: Pull the massive original file using data-highres
+      const highResSource = imgElement.getAttribute('data-highres');
+      lightboxImg.src = highResSource ? highResSource : imgElement.src;
+      
       lightboxCaption.innerText = item.querySelector('h4').innerText;
       lightbox.classList.add('active');
       document.body.classList.add('lightbox-open');
@@ -110,7 +116,7 @@ function initLightbox() {
   });
 }
 
-// 5. Morphing Contact Form Logic (UPDATED FOR FORMSUBMIT)
+// 5. Morphing Contact Form Logic
 function initContactForm() {
   const showBtn = document.getElementById('show-contact-form');
   const cancelBtn = document.getElementById('cancel-contact-form');
@@ -171,7 +177,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initLightbox();
   initContactForm();
   initMobilePhotoHover(); 
-  initSecureSocials(); // Initialize the link decryptor
+  initSecureSocials(); 
   loadComponents();
 });
 

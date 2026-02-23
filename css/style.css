@@ -415,15 +415,18 @@ footer { text-align: center; padding: 2rem; color: var(--text-secondary); font-s
 }
 
 @media (max-width: 600px) {
-  /* Fix 3: Prevent contact buttons from squishing together */
-  .glass-panel { padding: 2.5rem 1.5rem !important; }
-  .hero-buttons { flex-direction: column; width: 100%; gap: 1rem; padding: 0 1rem; }
+  /* FIX: Heavily reduce padding and force elements to stay inside screen bounds */
+  .glass-panel { padding: 2rem 1rem !important; width: 100%; overflow: hidden; box-sizing: border-box; }
+  
+  .hero-buttons { flex-direction: column; width: 100%; gap: 1rem; padding: 0; }
   .primary-btn, .secondary-btn, .contact-btn { width: 100%; text-align: center; display: block; margin: 0; }
   .form-actions { flex-direction: column-reverse; gap: 0.8rem; }
   .form-actions button { width: 100%; text-align: center; }
-  .project-grid { grid-template-columns: 1fr; }
-  /* NEW FIX: Force photo-grid to stack gracefully on mobile to prevent right-overflow */
-  .photo-grid { grid-template-columns: 1fr; }
+  
+  /* FIX: Perfect centering and strict width limits for mobile cards */
+  .project-grid { display: flex; flex-direction: column; gap: 2rem; width: 100%; }
+  .photo-grid { display: flex; flex-direction: column; gap: 1.5rem; width: 100%; margin: 2rem 0 0 0; padding: 0; }
+  .photo-item { width: 100%; max-width: 100%; box-sizing: border-box; margin: 0; }
 }
 
 @media (hover: none) { .tilt-card { transform: none !important; } .skill-card:hover, .project-card:hover { transform: none; } .social-icon:hover { transform: none; } .hero-image-container:hover .hero-profile-pic { transform: none; box-shadow: 0 30px 60px rgba(0,0,0,0.15), inset 0 0 0 1px rgba(255,255,255,0.8); } }
