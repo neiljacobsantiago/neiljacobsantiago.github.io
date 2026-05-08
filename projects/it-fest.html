@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IT Fest | Neil.Folio</title>
+  <link rel="icon" type="image/png" href="../images/ui/NJS_logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+      .fb-embed-container { display: flex; justify-content: center; width: 100%; background: #ffffff; border-radius: 12px; overflow: hidden; padding: 1rem 0; border: 1px solid var(--card-border); box-shadow: 0 4px 20px rgba(0,0,0,0.15); height: fit-content; }
+      .fb-embed-container iframe { max-width: 100% !important; }
+      .native-photo-wrapper { width: 100%; border-radius: 12px; overflow: hidden; border: 1px solid var(--card-border); box-shadow: 0 4px 20px rgba(0,0,0,0.15); background: #000; display: flex; align-items: center; justify-content: center; }
+      .native-photo-wrapper img { width: 100%; height: auto; display: block; object-fit: cover; }
+  </style>
+</head>
+<body style="background-color: #f8fafc; overflow-x: hidden;">
+  <nav data-include="../components/nav-project.html"></nav>
+
+  <main style="padding-top: 100px; padding-bottom: 60px;">
+    <section id="single-project" style="width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 max(1rem, 3vw);">
+      
+      <a href="../projects.html#multimedia" class="back-link" style="display: inline-flex; align-items: center; gap: 0.5rem; color: var(--accent); text-decoration: none; font-weight: 600; margin-bottom: 3rem; font-family: 'Inter', sans-serif;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Back to Projects
+      </a>
+      
+      <header style="margin-bottom: 3rem; max-width: 800px;">
+          <p style="color: var(--col-blue); font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem;">Multimedia Production</p>
+          <h1 style="color: var(--text-main); font-size: clamp(2.5rem, 4vw, 3.5rem); line-height: 1.2; margin-bottom: 1rem; font-weight: 800; letter-spacing: -1px;">IT Fest Coverage</h1>
+          <p style="font-size: 1.1rem; color: var(--text-secondary); line-height: 1.8;">Comprehensive multimedia production including cinematic highlight reels, technical photography, and rapid social media deliverables designed to capture the high-energy environment of IT Fest.</p>
+      </header>
+  
+      <div class="project-details" style="color: var(--text-secondary); line-height: 1.8; font-size: 1.05rem;">
+          
+          <div style="background: rgba(59, 130, 246, 0.02); border: 1px solid var(--card-border); border-radius: 12px; padding: 2rem; margin-bottom: 4rem; max-width: 800px; display: flex; flex-direction: column; align-items: flex-start; text-align: left;">
+              <h3 style="color: var(--text-main); font-size: 1.1rem; margin: 0 0 1.2rem 0 !important; padding: 0 !important; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; font-weight: 700;">Coverage Details</h3>
+              
+              <div style="display: flex; flex-direction: column; gap: 0.8rem; font-size: 0.95rem; width: 100%; margin: 0 !important; padding: 0 !important;">
+                  <div style="margin: 0 !important; padding: 0 !important; text-align: left;"><strong style="color: var(--col-blue);">Neil Jacob Santiago</strong> &mdash; Production Director</div>
+                  <div style="margin: 0 !important; padding: 0 !important; text-align: left;"><strong style="color: var(--text-main);">Partner Organization</strong> &mdash; CLSU Information Technology Student Council (ITSC)</div>
+                  <div style="margin: 0 !important; padding: 0 !important; text-align: left;"><strong>Deliverables</strong> &mdash; Event documentation, rapid photo editing, and live social media deployment.</div>
+              </div>
+          </div>
+  
+          <h3 style="color: var(--text-main); margin-bottom: 1.5rem; font-size: 1.5rem; text-align: center; font-weight: 800;">Production Gallery & Live Deployment</h3>
+          <p style="text-align: center; margin-bottom: 3rem; font-size: 1rem;">A mix of native high-fidelity captures alongside the actual published social media engagement.</p>
+          
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 2.5rem; align-items: start; max-width: 1000px; margin: 0 auto;">
+              
+              <div style="display: flex; flex-direction: column; gap: 2.5rem;">
+                  <div class="native-photo-wrapper reveal active">
+                      <img src="../images/projects/itfest-1.jpg" alt="IT Fest Event Photo 1">
+                  </div>
+                  <div class="native-photo-wrapper reveal active">
+                      <img src="../images/projects/itfest-2.jpg" alt="IT Fest Event Photo 2">
+                  </div>
+              </div>
+  
+              <div class="fb-embed-container reveal active">
+                  <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FCLSU.ITSC%2Fposts%2Fpfbid02pA3JEtcnTY7bEXdgD9rq7WHLVVVhnQs5bSLAJJsQW7yQ6ZC4KL7ZAKJdDbBahUx6l&show_text=true&width=500" width="500" height="650" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+              </div>
+  
+          </div>
+  
+      </div>
+    </section>
+  </main>
+
+  <footer data-include="../components/footer.html"></footer>
+  <script src="../js/script.js"></script>
+</body>
+</html>

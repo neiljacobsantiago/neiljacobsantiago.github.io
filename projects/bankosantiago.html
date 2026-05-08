@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BankoSantiago | Neil.Folio</title>
+  <link rel="icon" type="image/png" href="../images/ui/NJS_logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body style="background-color: #f8fafc; overflow-x: hidden;">
+  <nav data-include="../components/nav-project.html"></nav>
+
+  <main style="padding-top: 100px; padding-bottom: 60px;">
+    <section id="single-project" style="width: 100%; max-width: 800px; margin: 0 auto; padding: 0 max(1rem, 3vw);">
+      
+      <a href="../projects.html" class="back-link" style="display: inline-flex; align-items: center; gap: 0.5rem; color: var(--accent); text-decoration: none; font-weight: 600; margin-bottom: 3rem; font-family: 'Inter', sans-serif;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Back to Projects
+      </a>
+      
+      <header style="margin-bottom: 3rem;">
+          <p style="color: var(--accent); font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem;">Web Applications Development</p>
+          <h1 style="color: var(--text-main); font-size: clamp(2.5rem, 4vw, 3.5rem); line-height: 1.2; margin-bottom: 1rem; font-weight: 800; letter-spacing: -1px;">BankoSantiago</h1>
+          <p style="margin-bottom: 3rem; color: var(--text-secondary); line-height: 1.8; font-size: 1.05rem;">Engineered as a final academic requirement for web applications development, BankoSantiago is a localized digital banking prototype built to optimize financial transactions and account management. Many modern banking applications suffer from feature bloat and slow navigation. This project addresses these inefficiencies by delivering a streamlined, highly responsive dashboard focused strictly on core functionalities—such as secure fund transfers, real-time balance tracking, and accessible transaction logging—showcasing strict UI/UX principles and secure data handling.</p>
+      </header>
+
+      <div class="project-details" style="color: var(--text-secondary); line-height: 1.8; font-size: 1.05rem;">
+          
+          <div class="reveal active" style="background: rgba(59, 130, 246, 0.02); border: 1px solid var(--card-border); border-radius: 12px; padding: 2rem; margin-bottom: 4rem; width: 100%; box-sizing: border-box;">
+              <h3 style="color: var(--text-main); font-size: 1.1rem; margin-bottom: 1.2rem; font-family: 'JetBrains Mono', monospace; text-transform: uppercase;">Development Team</h3>
+              
+              <ul style="list-style-type: none; padding-left: 0; margin: 0; font-size: 0.95rem;">
+              <li style="margin-bottom: 0.8rem;"><strong style="color: var(--text-main);">Rion Fauszt Bustos</strong> &mdash; Lead Developer</li>
+                  <li style="margin-bottom: 0.8rem;"><strong style="color: var(--accent);">Neil Jacob Santiago</strong> &mdash; UI/UX Designer & Frontend Developer</li>
+                  <li style="margin-bottom: 0.8rem;"><strong style="color: var(--text-main);">Vinze Norbert Siega</strong> &mdash; UI/UX Designer & Backend Developer</li>
+              </ul>
+          </div>
+
+          <div class="project-links" style="margin-bottom: 4rem; padding: 2rem; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.02);">
+              <div style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;">
+                  <a href="https://github.com/neiljacobsantiago/BankoSantiago" target="_blank" class="secondary-btn" style="text-decoration: none; padding: 0.8rem 2rem; font-weight: 600; border-radius: 8px; border: 1px solid var(--card-border); display: inline-flex; align-items: center; gap: 0.5rem; color: var(--text-main);">
+                      <i class="fab fa-github"></i> View GitHub Repository
+                  </a>
+              </div>
+          </div>
+          
+          <h3 style="color: var(--text-main); margin-bottom: 1.5rem; font-size: 1.5rem; font-weight: 800; letter-spacing: -0.5px;">System Interface</h3>
+          <div class="photo-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+              <div class="photo-item glass-panel reveal active" style="padding: 0; overflow: hidden; border: 1px solid var(--card-border);">
+                  <img src="../images/projects/banko-1.png" alt="BankoSantiago Interface" style="width: 100%; height: auto; display: block;">
+              </div>
+          </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer data-include="../components/footer.html"></footer>
+  <script src="../js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aurora Fest 2026 | Neil.Folio</title>
+  <link rel="icon" type="image/png" href="../images/ui/NJS_logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+      .journal-content { font-family: 'Inter', sans-serif; font-size: 1.15rem; line-height: 1.8; color: var(--text-secondary); margin-bottom: 4rem; }
+      .journal-content p { margin-bottom: 1.8rem; }
+      .journal-content blockquote { border-left: 4px solid var(--accent); padding-left: 1.5rem; margin-left: 0; font-style: italic; font-size: 1.25rem; color: var(--text-main); background: rgba(59, 130, 246, 0.03); padding: 1.5rem; border-radius: 0 12px 12px 0; margin: 2.5rem 0; }
+      
+      .blog-img-caption { display: flex; flex-direction: column; align-items: center; gap: 0.8rem; }
+      .blog-img-caption img { width: 100%; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); display: block; object-fit: cover; }
+      .blog-img-caption span { font-family: 'Inter', sans-serif; font-size: 0.9rem; color: var(--text-muted); font-weight: 500; }
+
+      .masonry-grid { column-count: 1; column-gap: 1.5rem; }
+      @media (min-width: 600px) { .masonry-grid { column-count: 2; } }
+      @media (min-width: 900px) { .masonry-grid { column-count: 3; } }
+      .masonry-item { break-inside: avoid; margin-bottom: 1.5rem; border-radius: 12px; overflow: hidden; position: relative; display: block; cursor: pointer; background: #0f172a; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid var(--card-border); }
+      .masonry-item img { width: 100%; height: auto; display: block; transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+      .masonry-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(15, 23, 42, 0.95) 0%, transparent 40%); display: flex; flex-direction: column; justify-content: flex-end; padding: 1.5rem; opacity: 0; transition: opacity 0.3s ease; }
+      .masonry-item:hover .masonry-overlay { opacity: 1; }
+      .photo-title { color: #ffffff; font-size: 1.1rem; font-weight: 800; margin: 0 0 0.3rem 0; font-family: 'Inter', sans-serif; transform: translateY(10px); transition: transform 0.3s ease; }
+      .photo-gear { color: #3b82f6; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 800; margin: 0; font-family: 'JetBrains Mono', monospace; transform: translateY(10px); transition: transform 0.3s ease 0.05s; }
+      .masonry-item:hover .photo-title, .masonry-item:hover .photo-gear { transform: translateY(0); }
+      
+      .lightbox { position: fixed; inset: 0; background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(5px); z-index: 99999; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+      .lightbox.active { opacity: 1; pointer-events: auto; }
+      .lightbox-img-wrapper { position: relative; max-width: 90vw; max-height: 85vh; }
+      .lightbox img { max-width: 100%; max-height: 85vh; border-radius: 8px; box-shadow: 0 10px 40px rgba(0,0,0,0.5); object-fit: contain; }
+      .lightbox-close { position: absolute; top: 2rem; right: 3rem; color: #ffffff; font-size: 3rem; cursor: pointer; line-height: 1; transition: color 0.3s ease; z-index: 100000; }
+      .lightbox-close:hover { color: var(--col-pink); }
+  </style>
+</head>
+<body style="background-color: #f8fafc; overflow-x: hidden;">
+  <nav data-include="../components/nav-project.html"></nav>
+
+  <main style="padding-top: 100px; padding-bottom: 100px; background-color: var(--bg-color);">
+    <article style="width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 max(1.5rem, 3vw);">
+      
+      <div style="text-align: center; margin-bottom: 3rem;">
+          <a href="../blog.html" style="color: var(--accent); text-decoration: none; font-weight: 600; font-family: 'Inter', sans-serif;">&larr; Back to Blog</a>
+      </div>
+      
+      <header style="text-align: center; margin-bottom: 4rem; max-width: 850px; margin-left: auto; margin-right: auto;">
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1.5rem; color: var(--accent); font-weight: 600;">
+              May 3, 2026 
+              <span style="color: var(--text-secondary); margin: 0 0.5rem;">|</span> 
+              Concert Media
+          </div>
+          <h1 style="color: var(--text-main); font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1.15; margin-bottom: 1.5rem; font-weight: 900; letter-spacing: -1.5px;">
+              Aurora Fest 2026:<br>Day 2
+          </h1>
+      </header>
+  
+      <div class="journal-content reveal active" style="max-width: 800px; margin: 0 auto;">
+          <p>Documenting a massive music festival requires pure endurance. Day 2 of Aurora Fest was an absolute gauntlet. We arrived at Clark Global City around 10:40 AM and queued in line by 11 AM, eventually marking a spot somewhat close to the platinum barricade in the front at 1 PM.</p>
+          
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 2.5rem 0;">
+              <div class="blog-img-caption">
+                  <img src="../images/projects/aurora-fest/amf-bg3.jpeg" alt="Festival Line Queue" style="aspect-ratio: 16/10;">
+                  <span>Festival Line Queue</span>
+              </div>
+              <div class="blog-img-caption">
+                  <img src="../images/projects/aurora-fest/amf-bg4.jpeg" alt="Crowd View" style="aspect-ratio: 16/10;">
+                  <span>Crowd View</span>
+              </div>
+          </div>
+
+          <p>Survival in the extreme heat began and lasted until dusk. Then, the OPM concert itself finally kicked off in this exact order: Kitchie Nadal, Parokya Ni Edgar, Kamikazee, Sexbomb Girls, IV Of Spades, and SB19.</p>
+          
+          <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.8rem; margin: 2.5rem 0;">
+              <img src="../images/projects/aurora-fest/amf-bg5.jpeg" alt="PNE Stage" style="width: 100%; border-radius: 12px; aspect-ratio: 1/1; object-fit: cover; box-shadow: 0 4px 10px rgba(0,0,0,0.15);">
+              <img src="../images/projects/aurora-fest/amf-bg6.jpeg" alt="Kamikazee Stage" style="width: 100%; border-radius: 12px; aspect-ratio: 1/1; object-fit: cover; box-shadow: 0 4px 10px rgba(0,0,0,0.15);">
+              <img src="../images/projects/aurora-fest/amf-bg7.jpeg" alt="Sexbomb Stage" style="width: 100%; border-radius: 12px; aspect-ratio: 1/1; object-fit: cover; box-shadow: 0 4px 10px rgba(0,0,0,0.15);">
+              <img src="../images/projects/aurora-fest/amf-bg8.jpeg" alt="IVOS Stage" style="width: 100%; border-radius: 12px; aspect-ratio: 1/1; object-fit: cover; box-shadow: 0 4px 10px rgba(0,0,0,0.15);">
+              <img src="../images/projects/aurora-fest/amf-bg9.jpeg" alt="SB19 Stage" style="width: 100%; border-radius: 12px; aspect-ratio: 1/1; object-fit: cover; box-shadow: 0 4px 10px rgba(0,0,0,0.15);">
+          </div>
+
+          <p>The dynamic stage lighting—shifting from deep purples to blinding strobes—meant shooting purely in manual and making split-second exposure adjustments. We experienced over 12 hours of extreme standing duration, waiting for those perfect, high-energy moments from the artists.</p>
+          
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 2.5rem 0;">
+              <div class="blog-img-caption">
+                  <img src="../images/projects/aurora-fest/amf-bg2.jpeg" alt="Neil at Aurora Fest" style="aspect-ratio: 3/4;">
+                  <span>Neil at Aurora Fest</span>
+              </div>
+              <div class="blog-img-caption">
+                  <img src="../images/projects/aurora-fest/amf-bg1.jpeg" alt="Festival Hand Sign" style="aspect-ratio: 3/4;">
+                  <span>Festival Energy</span>
+              </div>
+          </div>
+
+          <p>After navigating massive crowds and battling the elements, we exited the AMF vicinity at around 1:50 AM, finally arriving home completely exhausted at 4:10 AM.</p>
+
+          <blockquote>"Grabe yung pagod, as in legit—you really need to be physically and mentally prepared for a setup like this. May mga flaws and issues yung event, pero for a first-timer being that close to the artists? Not bad at all. Pumunta talaga ako para sa IVOS, pero I didn't expect na sobrang mapapa-wild ako sa set ng PNE at KMKZ; the raw energy of the crowd and live OPM just pushes you through the exhaustion. After all the chaos, the subsequent Lightroom editing sessions are where the magic actually happens, pulling the clarity out of those harsh neon washes."</blockquote>
+      </div>
+
+      <div class="masonry-grid reveal active">
+          
+          <div class="masonry-item"><img src="../images/projects/aurora-fest/amf-2.jpg" alt="Baby Dolls Wide" loading="lazy"><div class="masonry-overlay"><h4 class="photo-title">Baby Dolls</h4><p class="photo-gear">LIVE OPM</p></div></div>
+          <div class="masonry-item"><img src="../images/projects/aurora-fest/amf-4.jpg" alt="Baby Dolls Wide" loading="lazy"><div class="masonry-overlay"><h4 class="photo-title">Baby Dolls</h4><p class="photo-gear">LIVE OPM</p></div></div>
+          <div class="masonry-item"><img src="../images/projects/aurora-fest/amf-6.jpg" alt="Baby Dolls Wide" loading="lazy"><div class="masonry-overlay"><h4 class="photo-title">Baby Dolls</h4><p class="photo-gear">LIVE OPM</p></div></div>
+          <div class="masonry-item"><img src="../images/projects/aurora-fest/amf-7.jpg" alt="Baby Dolls Wide" loading="lazy"><div class="masonry-overlay"><h4 class="photo-title">Baby Dolls</h4><p class="photo-gear">LIVE OPM</p></div></div>
+          <div class="masonry-item"><img src="../images/projects/aurora-fest/amf-9.jpg" alt="Baby Dolls Wide" loading="lazy"><div class="masonry-overlay"><h4 class="photo-title">Baby Dolls</h4><p class="photo-gear">LIVE OPM</p></div></div>
+          <div class="masonry-item"><img src="../images/projects/aurora-fest/amf-10.jpg" alt="Baby Dolls Wide" loading="lazy"><div class="masonry-overlay"><h4 class="photo-title">Baby Dolls</h4><p class="photo-gear">LIVE OPM</p></div></div>
+          <div class="masonry-item"><img src="../images/projects/aurora-fest/amf-12.jpg" alt="Baby Dolls Wide" loading="lazy"><div class="masonry-overlay"><h4 class="photo-title">Baby Dolls</h4><p class="photo-gear">LIVE OPM</p></div></div>
+
+          <div class="masonry-item"><img src="../images/projects/aurora-fest/amf-13.jpg" alt="Kitchie Nadal Wide" loading="lazy"><div class="masonry-overlay"><h4 class="photo-title">Kitchie Nadal</h4><p class="photo-gear">LIVE OPM</p></div></div>
+          <div class="masonry-item"><img src="../images/projects/aurora-fest/amf-14.jpg" alt="Kitchie Nadal Close Up" loading="lazy"><div class="masonry-overlay"><h4 class="photo-title">Kitchie Nadal | Solo</h4><p class="photo-gear">LIVE OPM</p></div></div>
+          <div class="masonry-item"><img src="../images/projects/aurora-fest/amf-15.jpg" alt="Kitchie Nadal Close Up" loading="lazy"><div class="masonry-overlay"><h4 class="photo-title">Kitchie Nadal | Solo</h4><p class="photo-gear">LIVE OPM</p></div></div>
+          <div class="masonry-item"><img src="../images/projects/aurora-fest/amf-16.jpg" alt="Kitchie Nadal Wide" loading="lazy"><div class="masonry-overlay"><h4 class="photo-title">Kitchie Nadal</h4><p class="photo-gear">LIVE OPM</p></div></div>
+          <div class="masonry-item"><img src="../images/projects/aurora-fest/amf-17.jpg" alt="Kitchie Nadal Wide" loading="lazy"><div class="masonry-overlay"><h4 class="photo-title">Kitchie Nadal</h4><p class="photo-gear">LIVE OPM</p></div></div>
+
+          <div class="masonry-item"><img src="../images/projects/aurora-fest/amf-18.jpg" alt="Chito Miranda Close Up" loading="lazy"><div class="masonry-overlay"><h4 class="photo-title">Chito Miranda | Parokya Ni Edgar</h4><p class="photo-gear">LIVE OPM</p></div></div>
+          <div class="masonry-item"><img src="../images/projects/aurora-fest/amf-19.jpg" alt="Chito Miranda Close Up" loading="lazy"><div class="masonry-overlay"><h4 class="photo-title">Chito Miranda | Parokya Ni Edgar</h4><p class="photo-gear">LIVE OPM</p></div></div>
+          <div class="masonry-item"><img src="../images/projects/aurora-fest/amf-20.jpg" alt="Parokya Ni Edgar Wide" loading="lazy"><div class="masonry-overlay"><h4 class="photo-title">Parokya Ni Edgar</h4><p class="photo-gear">LIVE OPM</p></div></div>
+          <div class="masonry-item"><img src="../images/projects/aurora-fest/amf-21.jpg" alt="Chito Miranda Close Up" loading="lazy"><div class="masonry-overlay"><h4 class="photo-title">Chito Miranda | Parokya Ni Edgar</h4><p class="photo-gear">LIVE OPM</p></div></div>
+          <div class="masonry-item"><img src="../images/projects/aurora-fest/amf-22.jpg" alt="Parokya Ni Edgar Wide" loading="lazy"><div class="masonry-overlay"><h4 class="photo-title">Parokya Ni Edgar</h4><p class="photo-gear">LIVE OPM</p></div></div>
+          <div class="masonry-item"><img src="../images/projects/aurora-fest/amf-23.jpg" alt="Parokya Ni Edgar Wide" loading="lazy"><div class="masonry-overlay"><h4 class="photo-title">Parokya Ni Edgar</h4><p class="photo-gear">LIVE OPM</p></div></div>
+
+          <div class="masonry-item"><img src="../images/projects/aurora-fest/amf-24.jpg" alt="Jay Contreras Close Up" loading="lazy"><div class="masonry-overlay"><h4 class="photo-title">Jay Contreras | Kamikazee</h4><p class="photo-gear">LIVE OPM</p></div></div>
+          <div class="masonry-item"><img src="../images/projects/aurora-fest/amf-25.jpg" alt="Jomal Linao Close Up" loading="lazy"><div class="masonry-overlay"><h4 class="photo-title">Jomal Linao | Kamikazee</h4><p class="photo-gear">LIVE OPM</p></div></div>
+          <div class="masonry-item"><img src="../images/projects/aurora-fest/amf-26.jpg" alt="Jomal Linao Close Up" loading="lazy"><div class="masonry-overlay"><h4 class="photo-title">Jomal Linao | Kamikazee</h4><p class="photo-gear">LIVE OPM</p></div></div>
+          <div class="masonry-item"><img src="../images/projects/aurora-fest/amf-27.jpg" alt="Jay Contreras Close Up" loading="lazy"><div class="masonry-overlay"><h4 class="photo-title">Jay Contreras | Kamikazee</h4><p class="photo-gear">LIVE OPM</p></div></div>
+          <div class="masonry-item"><img src="../images/projects/aurora-fest/amf-28.jpg" alt="Kamikazee Wide" loading="lazy"><div class="masonry-overlay"><h4 class="photo-title">Kamikazee</h4><p class="photo-gear">LIVE OPM</p></div></div>
+          <div class="masonry-item"><img src="../images/projects/aurora-fest/amf-29.jpg" alt="Jay Contreras Wide" loading="lazy"><div class="masonry-overlay"><h4 class="photo-title">Jay Contreras | Kamikazee</h4><p class="photo-gear">LIVE OPM</p></div></div>
+          <div class="masonry-item"><img src="../images/projects/aurora-fest/amf-30.jpg" alt="Kamikazee Wide" loading="lazy"><div class="masonry-overlay"><h4 class="photo-title">Kamikazee</h4><p class="photo-gear">LIVE OPM</p></div></div>
+          <div class="masonry-item"><img src="../images/projects/aurora-fest/amf-31.jpg" alt="Kamikazee Wide" loading="lazy"><div class="masonry-overlay"><h4 class="photo-title">Kamikazee</h4><p class="photo-gear">LIVE OPM</p></div></div>
+          <div class="masonry-item"><img src="../images/projects/aurora-fest/amf-32.jpg" alt="Jay Contreras Close Up" loading="lazy"><div class="masonry-overlay"><h4 class="photo-title">Jay Contreras | Kamikazee</h4><p class="photo-gear">LIVE OPM</p></div></div>
+          <div class="masonry-item"><img src="../images/projects/aurora-fest/amf-33.jpg" alt="Jomal Linao Close Up" loading="lazy"><div class="masonry-overlay"><h4 class="photo-title">Jomal Linao | Kamikazee</h4><p class="photo-gear">LIVE OPM</p></div></div>
+          <div class="masonry-item"><img src="../images/projects/aurora-fest/amf-34.jpg" alt="Kamikazee Wide" loading="lazy"><div class="masonry-overlay"><h4 class="photo-title">Kamikazee</h4><p class="photo-gear">LIVE OPM</p></div></div>
+
+          <div class="masonry-item"><img src="../images/projects/aurora-fest/amf-35.jpg" alt="Sexbomb Girls Wide" loading="lazy"><div class="masonry-overlay"><h4 class="photo-title">Sexbomb Girls</h4><p class="photo-gear">LIVE OPM</p></div></div>
+          <div class="masonry-item"><img src="../images/projects/aurora-fest/amf-36.jpg" alt="Sexbomb Girls Wide" loading="lazy"><div class="masonry-overlay"><h4 class="photo-title">Sexbomb Girls</h4><p class="photo-gear">LIVE OPM</p></div></div>
+          <div class="masonry-item"><img src="../images/projects/aurora-fest/amf-37.jpg" alt="Sexbomb Girls Wide" loading="lazy"><div class="masonry-overlay"><h4 class="photo-title">Sexbomb Girls</h4><p class="photo-gear">LIVE OPM</p></div></div>
+          <div class="masonry-item"><img src="../images/projects/aurora-fest/amf-38.jpg" alt="Sexbomb Girls Wide" loading="lazy"><div class="masonry-overlay"><h4 class="photo-title">Sexbomb Girls</h4><p class="photo-gear">LIVE OPM</p></div></div>
+          <div class="masonry-item"><img src="../images/projects/aurora-fest/amf-39.jpg" alt="Sexbomb Girls Wide" loading="lazy"><div class="masonry-overlay"><h4 class="photo-title">Sexbomb Girls</h4><p class="photo-gear">LIVE OPM</p></div></div>
+          <div class="masonry-item"><img src="../images/projects/aurora-fest/amf-40.jpg" alt="Sexbomb Girls Wide" loading="lazy"><div class="masonry-overlay"><h4 class="photo-title">Sexbomb Girls</h4><p class="photo-gear">LIVE OPM</p></div></div>
+          <div class="masonry-item"><img src="../images/projects/aurora-fest/amf-41.jpg" alt="Sexbomb Girls Wide" loading="lazy"><div class="masonry-overlay"><h4 class="photo-title">Sexbomb Girls</h4><p class="photo-gear">LIVE OPM</p></div></div>
+          <div class="masonry-item"><img src="../images/projects/aurora-fest/amf-42.jpg" alt="Sexbomb Girls Wide" loading="lazy"><div class="masonry-overlay"><h4 class="photo-title">Sexbomb Girls</h4><p class="photo-gear">LIVE OPM</p></div></div>
+          <div class="masonry-item"><img src="../images/projects/aurora-fest/amf-43.jpg" alt="Sexbomb Girls Wide" loading="lazy"><div class="masonry-overlay"><h4 class="photo-title">Sexbomb Girls</h4><p class="photo-gear">LIVE OPM</p></div></div>
+
+          <div class="masonry-item"><img src="../images/projects/aurora-fest/amf-44.jpg" alt="Blaster Silhouette " loading="lazy"><div class="masonry-overlay"><h4 class="photo-title">Blaster Silhouette | IV of Spades</h4><p class="photo-gear">LIVE OPM</p></div></div>
+          <div class="masonry-item"><img src="../images/projects/aurora-fest/amf-45.jpg" alt="Blaster and Zild Close Up" loading="lazy"><div class="masonry-overlay"><h4 class="photo-title">Blaster and Zild | IV Of Spades</h4><p class="photo-gear">LIVE OPM</p></div></div>
+          <div class="masonry-item"><img src="../images/projects/aurora-fest/amf-46.jpg" alt="Unique Salonga Close Up" loading="lazy"><div class="masonry-overlay"><h4 class="photo-title">Unique Salonga | IV Of Spades</h4><p class="photo-gear">LIVE OPM</p></div></div>
+          <div class="masonry-item"><img src="../images/projects/aurora-fest/amf-47.jpg" alt="Blaster Silonga Close Up" loading="lazy"><div class="masonry-overlay"><h4 class="photo-title">Blaster Silonga | IV Of Spades</h4><p class="photo-gear">LIVE OPM</p></div></div>
+          <div class="masonry-item"><img src="../images/projects/aurora-fest/amf-48.jpg" alt="Blaster Silonga Close Up" loading="lazy"><div class="masonry-overlay"><h4 class="photo-title">Blaster Silonga | IV Of Spades</h4><p class="photo-gear">LIVE OPM</p></div></div>
+          <div class="masonry-item"><img src="../images/projects/aurora-fest/amf-49.jpg" alt="Unique Salonga Close Up" loading="lazy"><div class="masonry-overlay"><h4 class="photo-title">Unique Salonga | IV Of Spades</h4><p class="photo-gear">LIVE OPM</p></div></div>
+          <div class="masonry-item"><img src="../images/projects/aurora-fest/amf-50.jpg" alt="Blaster Silonga Close Up" loading="lazy"><div class="masonry-overlay"><h4 class="photo-title">Blaster Silonga | IV Of Spades</h4><p class="photo-gear">LIVE OPM</p></div></div>
+          <div class="masonry-item"><img src="../images/projects/aurora-fest/amf-51.jpg" alt="Badjao de Castro IV Of Spades Wide" loading="lazy"><div class="masonry-overlay"><h4 class="photo-title">Badjao De Castro | IV Of Spades</h4><p class="photo-gear">LIVE OPM</p></div></div>
+          <div class="masonry-item"><img src="../images/projects/aurora-fest/amf-52.jpg" alt="Zild Benitez Close Up" loading="lazy"><div class="masonry-overlay"><h4 class="photo-title">Zild Benitez | IV Of Spades</h4><p class="photo-gear">LIVE OPM</p></div></div>
+          <div class="masonry-item"><img src="../images/projects/aurora-fest/amf-53.jpg" alt="Blaster Silonga Close Up" loading="lazy"><div class="masonry-overlay"><h4 class="photo-title">Blaster Silonga | IV Of Spades</h4><p class="photo-gear">LIVE OPM</p></div></div>
+          <div class="masonry-item"><img src="../images/projects/aurora-fest/amf-54.jpg" alt="IV Of Spades Wide" loading="lazy"><div class="masonry-overlay"><h4 class="photo-title">IV Of Spades</h4><p class="photo-gear">LIVE OPM</p></div></div>
+
+          <div class="masonry-item"><img src="../images/projects/aurora-fest/amf-55.jpg" alt="Stell SB19 Wide" loading="lazy"><div class="masonry-overlay"><h4 class="photo-title">Stell | SB19</h4><p class="photo-gear">LIVE OPM</p></div></div>
+          <div class="masonry-item"><img src="../images/projects/aurora-fest/amf-56.jpg" alt="Justin Close Up" loading="lazy"><div class="masonry-overlay"><h4 class="photo-title">Justin | SB19</h4><p class="photo-gear">LIVE OPM</p></div></div>
+          <div class="masonry-item"><img src="../images/projects/aurora-fest/amf-57.jpg" alt="Justine Close Up" loading="lazy"><div class="masonry-overlay"><h4 class="photo-title">Justin | SB19</h4><p class="photo-gear">LIVE OPM</p></div></div>
+          <div class="masonry-item"><img src="../images/projects/aurora-fest/amf-58.jpg" alt="Josh Close Up" loading="lazy"><div class="masonry-overlay"><h4 class="photo-title">Josh | SB19</h4><p class="photo-gear">LIVE OPM</p></div></div>
+          <div class="masonry-item"><img src="../images/projects/aurora-fest/amf-59.jpg" alt="Justin Close Up" loading="lazy"><div class="masonry-overlay"><h4 class="photo-title">Justin | SB19</h4><p class="photo-gear">LIVE OPM</p></div></div>
+
+      </div>
+  
+    </article>
+  </main>
+
+  <div id="photo-lightbox" class="lightbox">
+      <span class="lightbox-close">&times;</span>
+      <div class="lightbox-img-wrapper">
+          <img id="lightbox-img" src="" alt="Popup Image">
+      </div>
+  </div>
+
+  <footer data-include="../components/footer.html"></footer>
+  <script src="../js/script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const masonryItems = document.querySelectorAll('.masonry-item');
+        const lightbox = document.getElementById('photo-lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const closeBtn = document.querySelector('.lightbox-close');
+    
+        masonryItems.forEach(item => {
+            item.addEventListener('click', function() {
+                const img = this.querySelector('img');
+                const imgSrc = img.getAttribute('src');
+                lightboxImg.setAttribute('src', imgSrc);
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden'; 
+            });
+        });
+    
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto'; 
+        }
+    
+        if(closeBtn) closeBtn.addEventListener('click', closeLightbox);
+        if(lightbox) lightbox.addEventListener('click', function(e) {
+            if (e.target === lightbox) closeLightbox();
+        });
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && lightbox && lightbox.classList.contains('active')) closeLightbox();
+        });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog | Neil.Folio</title>
+  <link rel="icon" type="image/png" href="images/ui/NJS_logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+      .editorial-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 3rem; }
+      .journal-entry.featured-article { grid-column: 1 / -1; display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; padding-bottom: 4rem; margin-bottom: 2rem; border-bottom: 1px dashed var(--card-border); background: transparent; }
+      .journal-entry.featured-article .article-content { padding: 0; }
+      .journal-entry.standard-article { background: #ffffff; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.02); border: 1px solid var(--card-border); overflow: hidden; display: flex; flex-direction: column; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+      .journal-entry.standard-article:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); border-color: #3b82f6; }
+      .journal-entry.standard-article .article-content { padding: 2.5rem; flex-grow: 1; display: flex; flex-direction: column; }
+      .article-thumbnail-wrap { display: block; width: 100%; aspect-ratio: 16/9; overflow: hidden; background: #e2e8f0; position: relative; }
+      .journal-entry.featured-article .article-thumbnail-wrap { border-radius: 16px; border: 1px solid var(--card-border); }
+      .journal-entry.standard-article .article-thumbnail-wrap { border-radius: 0; border-bottom: 1px solid var(--card-border); }
+      .article-thumbnail-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+      .journal-entry:hover .article-thumbnail-wrap img { transform: scale(1.05); }
+      .article-meta { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1rem; }
+      .article-date { color: #3b82f6; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; font-size: 0.85rem; font-family: 'JetBrains Mono', monospace; }
+      .meta-divider { color: #cbd5e1; }
+      .article-category { color: #8b5cf6; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; font-size: 0.85rem; font-family: 'JetBrains Mono', monospace; }
+      .article-title { font-family: 'Inter', sans-serif; font-weight: 900; font-size: clamp(1.5rem, 2.5vw, 2.2rem); line-height: 1.2; margin-bottom: 1rem; letter-spacing: -1px; }
+      .journal-entry.featured-article .article-title { font-size: clamp(2.5rem, 4vw, 3.5rem); letter-spacing: -1.5px; }
+      .article-title a { color: #0f172a; text-decoration: none; transition: color 0.2s; }
+      .article-title a:hover { color: #3b82f6; }
+      .article-excerpt { line-height: 1.7; font-size: 1.05rem; margin-bottom: 2rem; color: #64748b; }
+      .journal-entry.featured-article .article-excerpt { font-size: 1.15rem; }
+      .read-article-link { display: inline-flex; align-items: center; font-weight: 800; text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; color: #3b82f6; transition: all 0.3s ease; margin-top: auto; }
+      .read-article-link:hover { color: #0f172a; transform: translateX(5px); }
+      @media (max-width: 900px) { .editorial-grid, .journal-entry.featured-article { grid-template-columns: 1fr; gap: 2rem; } .journal-entry.featured-article { padding-bottom: 2rem; } }
+  </style>
+</head>
+<body style="background-color: #f8fafc; overflow-x: hidden;">
+  <nav data-include="components/nav.html"></nav>
+
+  <main style="padding-top: 120px; padding-bottom: 100px; background-color: #f8fafc; min-height: 80vh; overflow-x: hidden;">
+      <section style="width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 max(1rem, 3vw);">
+          
+          <div style="text-align: center; margin-bottom: 5rem; max-width: 800px; margin-left: auto; margin-right: auto;" class="reveal active">
+              <h1 style="font-family: 'Inter', sans-serif; font-size: clamp(3rem, 5vw, 4.5rem); font-weight: 900; letter-spacing: -2px; color: #0f172a; margin-bottom: 1rem; margin-top: 0;">
+                  My Blogs & Learnings
+              </h1>
+              <p style="font-family: 'Inter', sans-serif; font-size: 1.15rem; color: #64748b; line-height: 1.6; margin: 0;">
+                  Reflections on Web Development, Networking, and my IT journey.
+              </p>
+          </div>
+  
+          <div class="editorial-grid">
+              
+              <article class="journal-entry reveal active featured-article">
+                  <a href="projects/aurora-fest.html" class="article-thumbnail-wrap">
+                      <span style="position: absolute; top: 15px; left: 15px; background: #3b82f6; color: white; padding: 4px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 800; z-index: 10; font-family: 'JetBrains Mono', monospace;">LATEST POST</span>
+                      <img src="images/projects/aurora-fest/amf-bg.jpeg" alt="Featured Article">
+                  </a>
+                  <div class="article-content">
+                      <div class="article-meta">
+                          <span class="article-date">May 3, 2026</span>
+                          <span class="meta-divider">|</span>
+                          <span class="article-category">Concert Media</span>
+                      </div>
+                      <h2 class="article-title">
+                          <a href="projects/aurora-fest.html">Aurora Fest 2026: Day 2</a>
+                      </h2>
+                      <div class="article-excerpt">
+                          Through the Lens: A massive summer music festival requires endurance. Here is how I survived 12+ hours of extreme standing duration, navigated the crowds, and battled dynamic stage lighting to capture classi OPM artists.
+                      </div>
+                      <a href="projects/aurora-fest.html" class="read-article-link">
+                          Read Story &rarr;
+                      </a>
+                  </div>
+              </article>
+
+              <article class="journal-entry reveal active standard-article">
+                  <a href="blog/posts/first-post.html" class="article-thumbnail-wrap">
+                      <img src="images/projects/project_thumbnail_network.jpg" alt="Article Thumbnail">
+                  </a>
+                  <div class="article-content">
+                      <div class="article-meta">
+                          <span class="article-date">May 6, 2026</span>
+                          <span class="meta-divider">|</span>
+                          <span class="article-category">System Design</span>
+                      </div>
+                      <h2 class="article-title"><a href="blog/posts/first-post.html">Architecting Scalable Networks</a></h2>
+                      <div class="article-excerpt">A deep dive into the methodology behind structuring redundant systems for enterprise solutions. Exploring routing protocols and physical layer integrations...</div>
+                      <a href="blog/posts/first-post.html" class="read-article-link">Read Story &rarr;</a>
+                  </div>
+              </article>
+
+              <article class="journal-entry reveal active standard-article">
+                  <a href="blog/posts/live-stage-shoot.html" class="article-thumbnail-wrap">
+                      <img src="images/projects/project_thumbnail_sde.jpg" alt="Article Thumbnail">
+                  </a>
+                  <div class="article-content">
+                      <div class="article-meta">
+                          <span class="article-date">Apr 24, 2026</span>
+                          <span class="meta-divider">|</span>
+                          <span class="article-category">Multimedia</span>
+                      </div>
+                      <h2 class="article-title"><a href="blog/posts/live-stage-shoot.html">Navigating My First Live Stage Shoot</a></h2>
+                      <div class="article-excerpt">The adrenaline of live event coverage requires strict preparation. Here's how I handled lighting adjustments and stage movement.</div>
+                      <a href="blog/posts/live-stage-shoot.html" class="read-article-link">Read Story &rarr;</a>
+                  </div>
+              </article>
+
+              <article class="journal-entry reveal active standard-article">
+                  <a href="blog/posts/logic-of-hardware.html" class="article-thumbnail-wrap">
+                      <img src="images/projects/buildit_logo.png" alt="Article Thumbnail">
+                  </a>
+                  <div class="article-content">
+                      <div class="article-meta">
+                          <span class="article-date">Apr 14, 2026</span>
+                          <span class="meta-divider">|</span>
+                          <span class="article-category">Web Dev</span>
+                      </div>
+                      <h2 class="article-title"><a href="blog/posts/logic-of-hardware.html">The Logic of Hardware: Building BuildIT</a></h2>
+                      <div class="article-excerpt">Translating terminal C logic into a fully hosted web app with strict component compatibility checks.</div>
+                      <a href="blog/posts/logic-of-hardware.html" class="read-article-link">Read Story &rarr;</a>
+                  </div>
+              </article>
+
+              <article class="journal-entry reveal active standard-article">
+                  <a href="blog/posts/chasing-blood-moon.html" class="article-thumbnail-wrap">
+                      <img src="images/photography/photography-17.jpeg" alt="Article Thumbnail">
+                  </a>
+                  <div class="article-content">
+                      <div class="article-meta">
+                          <span class="article-date">Mar 10, 2026</span>
+                          <span class="meta-divider">|</span>
+                          <span class="article-category">Photography</span>
+                      </div>
+                      <h2 class="article-title"><a href="blog/posts/chasing-blood-moon.html">Chasing the Blood Moon</a></h2>
+                      <div class="article-excerpt">Astrophotography requires immense patience. Breaking down my exact camera settings for lunar eclipse documentation.</div>
+                      <a href="blog/posts/chasing-blood-moon.html" class="read-article-link">Read Story &rarr;</a>
+                  </div>
+              </article>
+
+              <article class="journal-entry reveal active standard-article">
+                  <a href="blog/posts/architecture-of-trust.html" class="article-thumbnail-wrap">
+                      <img src="images/projects/bangkosantiago.png" alt="Article Thumbnail">
+                  </a>
+                  <div class="article-content">
+                      <div class="article-meta">
+                          <span class="article-date">Oct 28, 2025</span>
+                          <span class="meta-divider">|</span>
+                          <span class="article-category">Software Dev</span>
+                      </div>
+                      <h2 class="article-title"><a href="blog/posts/architecture-of-trust.html">The Architecture of Trust</a></h2>
+                      <div class="article-excerpt">Translating frontend designs into an environment where backend developers seamlessly connect logic.</div>
+                      <a href="blog/posts/architecture-of-trust.html" class="read-article-link">Read Story &rarr;</a>
+                  </div>
+              </article>
+
+              <article class="journal-entry reveal active standard-article">
+                  <a href="blog/posts/cybersecurity-series.html" class="article-thumbnail-wrap">
+                      <img src="images/projects/cybersec.png" alt="Article Thumbnail">
+                  </a>
+                  <div class="article-content">
+                      <div class="article-meta">
+                          <span class="article-date">Aug 31, 2025</span>
+                          <span class="meta-divider">|</span>
+                          <span class="article-category">IT Experience</span>
+                      </div>
+                      <h2 class="article-title"><a href="blog/posts/cybersecurity-series.html">Behind the Lens: Cybersecurity Series</a></h2>
+                      <div class="article-excerpt">Analyzing common cybersecurity vulnerabilities and phishing scams through our recent multimedia campaign.</div>
+                      <a href="blog/posts/cybersecurity-series.html" class="read-article-link">Read Story &rarr;</a>
+                  </div>
+              </article>
+              
+          </div>
+      </section>
+  </main>
+
+  <footer data-include="components/footer.html"></footer>
+  <script src="js/script.js"></script>
+</body>
+</html>

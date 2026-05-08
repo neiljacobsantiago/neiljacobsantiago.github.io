@@ -1,152 +1,268 @@
 <!doctype html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Photography | Neil Jacob Santiago</title>
-  
+  <title>Photography | Neil.Folio</title>
   <link rel="icon" type="image/png" href="../images/ui/NJS_logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
-  
   <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .masonry-grid { column-count: 1; column-gap: 1.5rem; }
+    @media (min-width: 600px) { .masonry-grid { column-count: 2; } }
+    @media (min-width: 900px) { .masonry-grid { column-count: 3; } }
+    .masonry-item { break-inside: avoid; margin-bottom: 1.5rem; border-radius: 8px; overflow: hidden; position: relative; display: block; cursor: pointer; background: #0f172a; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid var(--card-border); }
+    .masonry-item img { width: 100%; height: auto; display: block; transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+    .masonry-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(15, 23, 42, 0.95) 0%, rgba(15, 23, 42, 0.2) 50%, transparent 100%); opacity: 0; transition: opacity 0.3s ease; display: flex; flex-direction: column; justify-content: flex-end; padding: 1.5rem; }
+    .masonry-item:hover img { transform: scale(1.05); }
+    .masonry-item:hover .masonry-overlay { opacity: 1; }
+    .photo-title { color: #ffffff; font-size: 1.1rem; font-weight: 700; margin: 0 0 0.3rem 0; font-family: 'Inter', sans-serif; transform: translateY(10px); transition: transform 0.3s ease; }
+    .photo-gear { color: var(--accent); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; margin: 0; font-family: 'JetBrains Mono', monospace; transform: translateY(10px); transition: transform 0.3s ease 0.05s; }
+    .masonry-item:hover .photo-title, .masonry-item:hover .photo-gear { transform: translateY(0); }
+    .lightbox { position: fixed; inset: 0; background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(5px); z-index: 99999; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+    .lightbox.active { opacity: 1; pointer-events: auto; }
+    .lightbox-img-wrapper { position: relative; max-width: 90vw; max-height: 75vh; }
+    .lightbox img { max-width: 100%; max-height: 75vh; border-radius: 8px; box-shadow: 0 10px 40px rgba(0,0,0,0.5); object-fit: contain; }
+    .lightbox-close { position: absolute; top: 2rem; right: 3rem; color: #ffffff; font-size: 3rem; cursor: pointer; line-height: 1; transition: color 0.3s ease; z-index: 100000; }
+    .lightbox-close:hover { color: var(--col-pink); }
+    .lightbox-caption { color: #ffffff; margin-top: 1.5rem; text-align: center; font-family: 'Inter', sans-serif; }
+    .lightbox-caption h4 { margin: 0 0 0.5rem 0; font-size: 1.5rem; font-weight: 700; }
+    .lightbox-caption p { margin: 0; color: var(--accent); font-family: 'JetBrains Mono', monospace; font-size: 0.95rem; }
+  </style>
 </head>
-<body>
-
-  <div class="gradient-bg">
-    <div class="gradient-blob blob-1"></div>
-    <div class="gradient-blob blob-2"></div>
-    <div class="gradient-blob blob-3"></div>
-  </div>
-
+<body style="background-color: #f8fafc; overflow-x: hidden;">
   <nav data-include="../components/nav-project.html"></nav>
 
-  <section id="photography-portfolio" style="padding-top: 150px; min-height: 100vh; padding-bottom: 60px;">
-    <div class="glass-panel" style="max-width: 1200px; text-align: left;">
+  <main style="padding-top: 100px; padding-bottom: 80px;">
+    <section id="photography-portfolio" style="width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 max(1rem, 3vw);">
       
-      <a href="../index.html" class="back-link">
+      <a href="../projects.html#multimedia" class="back-link" style="display: inline-flex; align-items: center; gap: 0.5rem; color: var(--accent); text-decoration: none; font-weight: 600; margin-bottom: 3rem; font-family: 'Inter', sans-serif;">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
-        Back to Home
+        Back to Multimedia
       </a>
       
-      <div class="center-header">
-        <h2>Selected Captures</h2>
-        <p>A compilation of my visual work, capturing moments in high fidelity.</p>
-      </div>
-      
-      <div class="photo-grid">
+      <header style="margin-bottom: 4rem; max-width: 800px;">
+        <p style="color: var(--col-pink); font-family: 'JetBrains Mono', monospace; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem; font-weight: 600;">Creative Portfolio</p>
+        <h1 style="color: var(--text-main); font-size: clamp(2.5rem, 4vw, 4rem); line-height: 1.2; margin-bottom: 1rem; font-weight: 800; letter-spacing: -1px;">Selected Captures</h1>
+        <p style="font-size: 1.1rem; color: var(--text-secondary); line-height: 1.8;">A compilation of my visual work, capturing moments in high fidelity.</p>
+      </header>
         
-        <a href="../images/photography/Siever.jpg" class="photo-item reveal tilt-card">
-          <img src="../images/photography/thumbs/Siever.jpg" alt="CLSU Siever" loading="lazy" decoding="async">
-          <div class="photo-caption">
-            <h4>CLSU Siever</h4>
-            <p>Shot on iPhone 14 Pro Max | Processed in Lightroom</p>
+      <div class="masonry-grid reveal active">
+          
+          <div class="masonry-item">
+              <img src="../images/photography/Siever.jpg" alt="CLSU Siever" loading="lazy" decoding="async">
+              <div class="masonry-overlay">
+                  <h4 class="photo-title">CLSU Siever</h4>
+                  <p class="photo-gear">Shot on iPhone 14 Pro Max</p>
+              </div>
           </div>
-        </a>
-
-        <a href="../images/photography/photography-1.jpg" class="photo-item reveal tilt-card">
-          <img src="../images/photography/thumbs/photography-1.jpg" alt="Live Stage Performance" loading="lazy" decoding="async">
-          <div class="photo-caption">
-            <h4>Joao's Stage Illumination</h4>
-            <p>Shot on iPhone 14 Pro Max | Processed in Lightroom</p>
+  
+          <div class="masonry-item">
+              <img src="../images/photography/photography-1.jpg" alt="Live Stage Performance" loading="lazy" decoding="async">
+              <div class="masonry-overlay">
+                  <h4 class="photo-title">Joao's Stage Illumination</h4>
+                  <p class="photo-gear">Shot on iPhone 14 Pro Max</p>
+              </div>
           </div>
-        </a>
-
-        <a href="../images/photography/photography-2.jpg" class="photo-item reveal tilt-card">
-          <img src="../images/photography/thumbs/photography-2.jpg" alt="Feline Portrait" loading="lazy" decoding="async">
-          <div class="photo-caption">
-            <h4>Feline Subject</h4>
-            <p>Shot on iPhone 14 Pro Max | Processed in Lightroom</p>
+  
+          <div class="masonry-item">
+              <img src="../images/photography/photography-2.jpg" alt="Feline Portrait" loading="lazy" decoding="async">
+              <div class="masonry-overlay">
+                  <h4 class="photo-title">Feline Subject</h4>
+                  <p class="photo-gear">Shot on iPhone 14 Pro Max</p>
+              </div>
           </div>
-        </a>
-
-        <a href="../images/photography/photography-3.jpg" class="photo-item reveal tilt-card">
-          <img src="../images/photography/thumbs/photography-3.jpg" alt="Macro Floral" loading="lazy" decoding="async">
-          <div class="photo-caption">
-            <h4>Floral Contrast</h4>
-            <p>Shot on Canon EOS 1500D | Processed in Lightroom</p>
+  
+          <div class="masonry-item">
+              <img src="../images/photography/photography-3.jpg" alt="Macro Floral" loading="lazy" decoding="async">
+              <div class="masonry-overlay">
+                  <h4 class="photo-title">Floral Contrast</h4>
+                  <p class="photo-gear">Shot on Canon EOS 1500D</p>
+              </div>
           </div>
-        </a>
-
-        <a href="../images/photography/photography-4.jpg" class="photo-item reveal tilt-card">
-          <img src="../images/photography/thumbs/photography-4.jpg" alt="Vibrant Blossom" loading="lazy" decoding="async">
-          <div class="photo-caption">
-            <h4>Vibrant Bloom</h4>
-            <p>Shot on Canon EOS 1500D | Processed in Lightroom</p>
+  
+          <div class="masonry-item">
+              <img src="../images/photography/photography-4.jpg" alt="Vibrant Blossom" loading="lazy" decoding="async">
+              <div class="masonry-overlay">
+                  <h4 class="photo-title">Vibrant Bloom</h4>
+                  <p class="photo-gear">Shot on Canon EOS 1500D</p>
+              </div>
           </div>
-        </a>
-
-        <a href="../images/photography/photography-5.jpg" class="photo-item reveal tilt-card">
-          <img src="../images/photography/thumbs/photography-5.jpg" alt="Cat Close-up" loading="lazy" decoding="async">
-          <div class="photo-caption">
-            <h4>Portrait Detail</h4>
-            <p>Shot on iPhone 14 Pro Max | Processed in Lightroom</p>
+  
+          <div class="masonry-item">
+              <img src="../images/photography/photography-5.jpg" alt="Cat Close-up" loading="lazy" decoding="async">
+              <div class="masonry-overlay">
+                  <h4 class="photo-title">Portrait Detail</h4>
+                  <p class="photo-gear">Shot on iPhone 14 Pro Max</p>
+              </div>
           </div>
-        </a>
-
-        <a href="../images/photography/photography-6.jpg" class="photo-item reveal tilt-card">
-          <img src="../images/photography/thumbs/photography-6.jpg" alt="Astrophotography Night Sky" loading="lazy" decoding="async">
-          <div class="photo-caption">
-            <h4>Meisser 31</h4>
-            <p>Shot on Nikon D780 | Processed in Lightroom</p>
+  
+          <div class="masonry-item">
+              <img src="../images/photography/photography-6.jpg" alt="Astrophotography Night Sky" loading="lazy" decoding="async">
+              <div class="masonry-overlay">
+                  <h4 class="photo-title">Messier 31</h4>
+                  <p class="photo-gear">Shot on Nikon D780</p>
+              </div>
           </div>
-        </a>
-
-        <a href="../images/photography/photography-7.jpg" class="photo-item reveal tilt-card">
-          <img src="../images/photography/thumbs/photography-7.jpg" alt="Desolate Road" loading="lazy" decoding="async">
-          <div class="photo-caption">
-            <h4>Desolate Road</h4>
-            <p>Shot on Canon EOS 80D | Processed in Lightroom</p>
+  
+          <div class="masonry-item">
+              <img src="../images/photography/photography-7.jpg" alt="Desolate Road" loading="lazy" decoding="async">
+              <div class="masonry-overlay">
+                  <h4 class="photo-title">Desolate Road</h4>
+                  <p class="photo-gear">Shot on Canon EOS 80D</p>
+              </div>
           </div>
-        </a>
-
-        <a href="../images/photography/photography-8.jpg" class="photo-item reveal tilt-card">
-          <img src="../images/photography/thumbs/photography-8.jpg" alt="Prehistoric Giant" loading="lazy" decoding="async">
-          <div class="photo-caption">
-            <h4>Prehistoric Giant</h4>
-            <p>Shot on Canon EOS 80D | Processed in Lightroom</p>
+  
+          <div class="masonry-item">
+              <img src="../images/photography/photography-8.jpg" alt="Prehistoric Giant" loading="lazy" decoding="async">
+              <div class="masonry-overlay">
+                  <h4 class="photo-title">Prehistoric Giant</h4>
+                  <p class="photo-gear">Shot on Canon EOS 80D</p>
+              </div>
           </div>
-        </a>
-
-        <a href="../images/photography/photography-9.jpg" class="photo-item reveal tilt-card">
-          <img src="../images/photography/thumbs/photography-9.jpg" alt="White Lion Portrait" loading="lazy" decoding="async">
-          <div class="photo-caption">
-            <h4>White Lion Portrait</h4>
-            <p>Shot on Canon EOS 80D | Processed in Lightroom</p>
+  
+          <div class="masonry-item">
+              <img src="../images/photography/photography-9.jpg" alt="White Lion Portrait" loading="lazy" decoding="async">
+              <div class="masonry-overlay">
+                  <h4 class="photo-title">White Lion Portrait</h4>
+                  <p class="photo-gear">Shot on Canon EOS 80D</p>
+              </div>
           </div>
-        </a>
-
-        <a href="../images/photography/photography-10.jpg" class="photo-item reveal tilt-card">
-          <img src="../images/photography/thumbs/photography-10.jpg" alt="Rocky Shoreline" loading="lazy" decoding="async">
-          <div class="photo-caption">
-            <h4>Rocky Shoreline</h4>
-            <p>Shot on Canon EOS 80D | Processed in Lightroom</p>
+  
+          <div class="masonry-item">
+              <img src="../images/photography/photography-10.jpg" alt="Rocky Shoreline" loading="lazy" decoding="async">
+              <div class="masonry-overlay">
+                  <h4 class="photo-title">Rocky Shoreline</h4>
+                  <p class="photo-gear">Shot on Canon EOS 80D</p>
+              </div>
           </div>
-        </a>
-
-        <a href="../images/photography/photography-11.jpg" class="photo-item reveal tilt-card">
-          <img src="../images/photography/thumbs/photography-11.jpg" alt="Urban Sunset" loading="lazy" decoding="async">
-          <div class="photo-caption">
-            <h4>Urban Sunset</h4>
-            <p>Shot on Canon EOS 80D | Processed in Lightroom</p>
+  
+          <div class="masonry-item">
+              <img src="../images/photography/photography-11.jpg" alt="Urban Sunset" loading="lazy" decoding="async">
+              <div class="masonry-overlay">
+                  <h4 class="photo-title">Urban Sunset</h4>
+                  <p class="photo-gear">Shot on Canon EOS 80D</p>
+              </div>
           </div>
-        </a>
-
-        <a href="../images/photography/photography-12.jpg" class="photo-item reveal tilt-card">
-          <img src="../images/photography/thumbs/photography-12.jpg" alt="Coastal Waves" loading="lazy" decoding="async">
-          <div class="photo-caption">
-            <h4>Coastal Waves</h4>
-            <p>Shot on Canon EOS 80D | Processed in Lightroom</p>
+  
+          <div class="masonry-item">
+              <img src="../images/photography/photography-12.jpg" alt="Coastal Waves" loading="lazy" decoding="async">
+              <div class="masonry-overlay">
+                  <h4 class="photo-title">Coastal Waves</h4>
+                  <p class="photo-gear">Shot on Canon EOS 80D</p>
+              </div>
           </div>
-        </a>
-
+  
+          <div class="masonry-item">
+              <img src="../images/photography/photography-13.jpg" alt="Nature Perspective" loading="lazy" decoding="async">
+              <div class="masonry-overlay">
+                  <h4 class="photo-title">Feline Gaze</h4>
+                  <p class="photo-gear">Shot on iPhone 14 Pro Max</p>
+              </div>
+          </div>
+  
+          <div class="masonry-item">
+              <img src="../images/photography/photography-14.jpg" alt="Landscape View" loading="lazy" decoding="async">
+              <div class="masonry-overlay">
+                  <h4 class="photo-title">Canopy Avenue</h4>
+                  <p class="photo-gear">Shot on iPhone 14 Pro Max</p>
+              </div>
+          </div>
+  
+          <div class="masonry-item">
+              <img src="../images/photography/photography-15.jpg" alt="Dog Portrait" loading="lazy" decoding="async">
+              <div class="masonry-overlay">
+                  <h4 class="photo-title">Canine Companion</h4>
+                  <p class="photo-gear">Shot on iPhone 14 Pro Max</p>
+              </div>
+          </div>
+  
+          <div class="masonry-item">
+              <img src="../images/photography/photography-16.jpeg" alt="Full Moon" loading="lazy" decoding="async">
+              <div class="masonry-overlay">
+                  <h4 class="photo-title">Lunar Surface</h4>
+                  <p class="photo-gear">Shot on Canon EOS 1500D</p>
+              </div>
+          </div>
+  
+          <div class="masonry-item">
+              <img src="../images/photography/photography-17.jpeg" alt="Lunar Eclipse" loading="lazy" decoding="async">
+              <div class="masonry-overlay">
+                  <h4 class="photo-title">Total Lunar Eclipse</h4>
+                  <p class="photo-gear">Shot on Canon EOS 1500D</p>
+              </div>
+          </div>
+  
+          <div class="masonry-item">
+              <img src="../images/photography/photography-18.jpg" alt="Campus Architecture" loading="lazy" decoding="async">
+              <div class="masonry-overlay">
+                  <h4 class="photo-title">Campus Architecture</h4>
+                  <p class="photo-gear">Shot on Nikon D780</p>
+              </div>
+          </div>
+  
       </div>
-  </section>
-
+    </section>
+  </main>
+  
+  <div id="photo-lightbox" class="lightbox">
+      <span class="lightbox-close">&times;</span>
+      <div class="lightbox-img-wrapper">
+          <img id="lightbox-img" src="" alt="Popup Image">
+      </div>
+      <div id="lightbox-caption" class="lightbox-caption"></div>
+  </div>
+  
   <footer data-include="../components/footer.html"></footer>
-
   <script src="../js/script.js"></script>
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+      const masonryItems = document.querySelectorAll('.masonry-item');
+      const lightbox = document.getElementById('photo-lightbox');
+      const lightboxImg = document.getElementById('lightbox-img');
+      const lightboxCaption = document.getElementById('lightbox-caption');
+      const closeBtn = document.querySelector('.lightbox-close');
+  
+      masonryItems.forEach(item => {
+          item.addEventListener('click', function() {
+              const img = this.querySelector('img');
+              const imgSrc = img.getAttribute('src');
+              const title = this.querySelector('.photo-title').innerText;
+              const gear = this.querySelector('.photo-gear').innerText;
+              
+              lightboxImg.setAttribute('src', imgSrc);
+              lightboxCaption.innerHTML = `<h4>${title}</h4><p>${gear}</p>`;
+              
+              lightbox.classList.add('active');
+              document.body.style.overflow = 'hidden'; 
+          });
+      });
+  
+      function closeLightbox() {
+          lightbox.classList.remove('active');
+          document.body.style.overflow = 'auto'; 
+      }
+  
+      if(closeBtn) closeBtn.addEventListener('click', closeLightbox);
+  
+      if(lightbox) {
+        lightbox.addEventListener('click', function(e) {
+            if (e.target === lightbox) {
+                closeLightbox();
+            }
+        });
+      }
+      
+      document.addEventListener('keydown', function(e) {
+          if (e.key === 'Escape' && lightbox && lightbox.classList.contains('active')) {
+              closeLightbox();
+          }
+      });
+  });
+  </script>
 </body>
 </html>

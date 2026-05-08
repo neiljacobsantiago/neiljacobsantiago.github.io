@@ -1,39 +1,19 @@
-<a href="index.html" class="logo">
-  <img src="images/ui/NJS_logo.png" alt="NJS" class="brand-logo">
-</a>
-
-<div class="nav-right" style="display: flex; align-items: center; gap: 1rem;">
-  <ul class="nav-links" id="nav-links">
-    <li><a href="index.html#about">About</a></li>
-    <li><a href="index.html#skills">Skills</a></li>
-    <li><a href="index.html#projects">Projects</a></li>
-    <li><a href="index.html#contact">Contact</a></li>
-    <li><a href="resume.pdf" class="nav-resume-btn" target="_blank">Resume</a></li>
-  </ul>
-  
-  <button id="theme-toggle" aria-label="Toggle Theme">
-    <div class="toggle-icon">
-      <svg class="theme-icon-svg" viewBox="0 0 24 24" fill="currentColor">
-        <mask id="moon-mask">
-          <rect x="0" y="0" width="24" height="24" fill="white"></rect>
-          <circle cx="17" cy="5" r="9" fill="black" class="moon-mask-shape"></circle>
-        </mask>
-        <circle cx="12" cy="12" r="5" mask="url(#moon-mask)" class="sun-core"></circle>
-        <g class="sun-rays" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-          <line x1="12" y1="1" x2="12" y2="4"></line><line x1="12" y1="20" x2="12" y2="23"></line>
-          <line x1="4.22" y1="4.22" x2="6.34" y2="6.34"></line><line x1="17.66" y1="17.66" x2="19.78" y2="19.78"></line>
-          <line x1="1" y1="12" x2="4" y2="12"></line><line x1="20" y1="12" x2="23" y2="12"></line>
-          <line x1="4.22" y1="19.78" x2="6.34" y2="17.66"></line><line x1="17.66" y1="6.34" x2="19.78" y2="4.22"></line>
-        </g>
-      </svg>
-    </div>
-  </button>
-  
-  <button id="mobile-menu-btn" aria-label="Toggle Menu" style="background: none; border: none; color: var(--text-main); cursor: pointer; display: none;">
-    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <line x1="3" y1="12" x2="21" y2="12"></line>
-      <line x1="3" y1="6" x2="21" y2="6"></line>
-      <line x1="3" y1="18" x2="21" y2="18"></line>
-    </svg>
-  </button>
-</div>
+<header class="header" style="position: relative; z-index: 99999; overflow: visible !important;">
+  <nav class="navbar" style="width: 100%; height: 70px; display: flex; justify-content: space-between; align-items: center; padding: 0 max(2rem, 5vw); z-index: 1000; background: #ffffff; border-bottom: 1px solid rgba(0, 0, 0, 0.05); box-shadow: 0 1px 3px rgba(0,0,0,0.1); position: fixed; top: 0; left: 0;">
+      <a href="/index.html" class="logo-text" style="text-decoration: none; font-family: 'Inter', sans-serif; font-size: 1.5rem; color: #0f172a; letter-spacing: -0.5px;">
+          <strong>Neil</strong><span class="dot" style="color: #3b82f6; font-weight: 800;">.</span><span class="light" style="font-weight: 500; opacity: 0.8;">Folio</span>
+      </a>
+      
+      <button id="mobile-menu-btn" class="mobile-toggle" aria-label="Toggle menu" style="background: none; border: none; cursor: pointer; display: none;">
+          <i class="ph ph-list" style="font-size: 2.2rem; color: #0f172a;"></i>
+      </button>
+      
+      <ul id="nav-links" class="nav-links" style="display: flex; list-style: none; gap: 2.5rem; align-items: center; margin: 0; padding: 0;">
+          <li><a href="/index.html" style="color: #475569; text-decoration: none; font-weight: 600; font-size: 0.95rem; font-family: 'Inter', sans-serif;">Home</a></li>
+          <li><a href="/about.html" style="color: #475569; text-decoration: none; font-weight: 600; font-size: 0.95rem; font-family: 'Inter', sans-serif;">About Me</a></li>
+          <li><a href="/projects.html" style="color: #475569; text-decoration: none; font-weight: 600; font-size: 0.95rem; font-family: 'Inter', sans-serif;">Projects</a></li>
+          <li><a href="/blog.html" style="color: #475569; text-decoration: none; font-weight: 600; font-size: 0.95rem; font-family: 'Inter', sans-serif;">Blogs</a></li>
+          <li><a href="/contact.html" style="color: #475569; text-decoration: none; font-weight: 600; font-size: 0.95rem; font-family: 'Inter', sans-serif;">Contact</a></li>
+      </ul>
+  </nav>
+</header>
